@@ -1,48 +1,7 @@
-public class MiserMan {
-	// private static int N = 5;
-	// private static int M = 5;
-	// private static int[][] K = {
-	// { 1, 3, 1, 2, 6 },
-	// { 10, 2, 5, 4, 15 },
-	// { 10, 9, 6, 7, 1 },
-	// { 2, 7, 1, 5, 3 },
-	// { 8, 2, 6, 1, 9 }
-	// };
-
-	// private static int N = 5;
-	// private static int M = 6;
-	// private static int[][] K = {
-	// { 1, 4, 6, 3, 1, 5 },
-	// { 1, 5, 6, 2, 1, 1 },
-	// { 1, 2, 5, 1, 51, 1 },
-	// { 1, 3, 4, 6, 3, 2 },
-	// { 1, 9, 3, 5, 3, 6 }
-	// };
-
-	// private static int N = 4;
-	// private static int M = 3;
-	// private static int[][] K = {
-	// { 5, 6, 1 },
-	// { 3, 5, 7 },
-	// { 3, 4, 6 },
-	// { 2, 4, 6 }
-	// };
-
-	private static int N = 100;
-	private static int M = 100;
+class MiserMan {
+	private static int N;
+	private static int M;
 	private static int[][] K;
-	static {
-		K = new int[100][100];
-		for (int i = 0; i < 100; i++) {
-			for (int j = 0; j < 100; j++) {
-				K[i][j] = ((Double) (Math.random() * 100)).intValue();
-			}
-		}
-	}
-
-	// private static int N;
-	// private static int M;
-	// private static int[][] K;
 
 	private static int smallest(int x, int y) {
 		return x < y ? x : y;
@@ -99,8 +58,7 @@ public class MiserMan {
 	}
 
 	public static void main(String[] args) {
-		// init(System.in);
-
+		init(System.in);
 		System.out.println(minAmount());
 	}
 
