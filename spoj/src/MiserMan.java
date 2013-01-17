@@ -28,8 +28,8 @@ public class MiserMan {
 	// { 2, 4, 6 }
 	// };
 
-	private static int N = 20;
-	private static int M = 20;
+	private static int N = 100;
+	private static int M = 100;
 	private static int[][] K;
 	static {
 		K = new int[100][100];
@@ -40,22 +40,50 @@ public class MiserMan {
 		}
 	}
 
-//	private static int N;
-//	private static int M;
-//	private static int[][] K;
+	// private static int N;
+	// private static int M;
+	// private static int[][] K;
 
-	private static int smallest(int x, int y, int z) {
-		return x < y ? x < z ? x : z : y < z ? y : z;
+	private static int smallest(int x, int y) {
+		return x < y ? x : y;
 	}
 
-	private static int minAmount(int n, int m) {
-//		System.out.println("At possition: ["+n+"],["+m+"]");
-		if (m == -1 || m > M - 1)
-			return 10001;
-		else if (n == N - 1)
-			return K[n][m];
-		else
-			return K[n][m] + smallest(minAmount(n + 1, m - 1), minAmount(n + 1, m), minAmount(n + 1, m + 1));
+	private static int smallest(int x, int y, int z) {
+		return smallest(x, smallest(y, z));
+	}
+
+	private static int sumFirstColumn() {
+		int sum = 0;
+		for (int i = 0; i < N; i++) {
+			sum += K[i][0];
+		}
+		return sum;
+	}
+
+	private static int minLastRow() {
+		int currMin = Integer.MAX_VALUE;
+		for (int i = 0; i < M; i++) {
+			currMin = smallest(currMin, K[N - 1][i]);
+		}
+		return currMin;
+	}
+
+	private static int minAmount() {
+		if (M == 1)
+			return sumFirstColumn();
+
+		for (int n = 1; n < N; n++) {
+			for (int m = 0; m < M; m++) {
+				if (m == 0)
+					K[n][m] += smallest(K[n - 1][m], K[n - 1][m + 1]);
+				else if (m == M - 1)
+					K[n][m] += smallest(K[n - 1][m - 1], K[n - 1][m]);
+				else
+					K[n][m] += smallest(K[n - 1][m - 1], K[n - 1][m], K[n - 1][m + 1]);
+			}
+		}
+
+		return minLastRow();
 	}
 
 	private static void init(java.io.InputStream inputStream) {
@@ -71,14 +99,9 @@ public class MiserMan {
 	}
 
 	public static void main(String[] args) {
-//		init(System.in);
+		// init(System.in);
 
-		 int currentMin = 10001;
-		 for (int i = 0; i <= M; i++) {
-		 int amount = minAmount(0, i);
-		 currentMin = amount < currentMin ? amount : currentMin;
-		 }
-		 System.out.println(currentMin);
+		System.out.println(minAmount());
 	}
 
 }
