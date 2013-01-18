@@ -1,6 +1,4 @@
-
-spoj/.classpath
-
-spoj/.project
-
-spoj/bin/*
+.classpath
+.project
+.settings/*
+bin/*

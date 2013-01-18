@@ -47,13 +47,17 @@ class MiserMan {
 
 	private static void init(java.io.InputStream inputStream) {
 		java.util.Scanner in = new java.util.Scanner(inputStream);
-		N = in.nextInt();
-		M = in.nextInt();
-		K = new int[N][M];
-		for (int n = 0; n < N; n++) {
-			for (int m = 0; m < M; m++) {
-				K[n][m] = in.nextInt();
+		try {
+			N = in.nextInt();
+			M = in.nextInt();
+			K = new int[N][M];
+			for (int n = 0; n < N; n++) {
+				for (int m = 0; m < M; m++) {
+					K[n][m] = in.nextInt();
+				}
 			}
+		} finally {
+			in.close();
 		}
 	}
 
