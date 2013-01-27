@@ -46,18 +46,22 @@ public class Skyline2 {
         skyline.add(surface[i]);
       }
     }
+    if (surface[surface.length-1] > 0) {
+    	skyline.add(surface[surface.length-1]);
+    	skyline.add(0);
+    }
     return skyline;
   }
   
   public static void main(String[] args) {
-	  Building[] city = { new Building(1, 11, 5),
-              new Building(2, 6, 7),
-              new Building(3, 13, 9),
-              new Building(12, 7, 16),
-              new Building(14, 3, 25),
-              new Building(19, 18, 22),
-              new Building(23, 13, 29),
-              new Building(24, 4, 28) };
+	  Building[] city = { new Building( 1, 11,  5),
+			              new Building( 2,  6,  7),
+			              new Building( 3, 13,  9),
+			              new Building(12,  7, 16),
+			              new Building(14,  3, 25),
+			              new Building(19, 18, 22),
+			              new Building(23, 13, 29),
+			              new Building(24,  4, 28) };
 	  System.out.println(drawSkyline(city));
 	  
 	  Building[] bigCity = new Building[MAX_BUILDINGS];
